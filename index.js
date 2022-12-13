@@ -2,20 +2,35 @@
 const express = require("express");
 const app = express();
 
+// 포켓몬 데이터 : 이름, 이미지
 const pokemons = [
   // 이상해씨
-  "https://data1.pokemonkorea.co.kr/newdata/pokedex/mid/000101.png",
+  {
+    name: "이상해씨",
+    imgUrl: "https://data1.pokemonkorea.co.kr/newdata/pokedex/mid/000101.png",
+  },
   //   이상해풀
-  "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000201.png",
+  {
+    name: "이상해풀",
+    imgUrl: "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000201.png",
+  },
   //   메가이상해꽃
-  "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000302.png",
+  {
+    name: "메가이상해꽃",
+    imgUrl: "https://data1.pokemonkorea.co.kr/newdata/pokedex/mid/000302.png",
+  },
 ];
 
 // pokemon 요청   접속 url : localhost3000:0 , 1, 2
 app.get("/pokemon/:id", (req, res) => {
   // req.params 클라이언트 요청 변수값
-  console.log(req.params);
-  res.send(`<img src='${pokemons[req.params.id]}' alt='${req.params.id}' />`);
+  // console.log(req.params);
+  // console.log("pokemons = ", pokemons[0].name);
+  res.send(
+    `<img src='${pokemons[req.params.id].imgUrl}' alt='${req.params.id}' />
+    <h3>${pokemons[req.params.id].name}</h3>
+    `
+  );
 });
 
 // get 요청
